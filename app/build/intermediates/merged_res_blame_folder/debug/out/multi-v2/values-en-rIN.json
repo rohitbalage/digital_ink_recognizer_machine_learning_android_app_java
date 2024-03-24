@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.imageclassification.app-mergeDebugResources-14:/values-en-rIN/values-en-rIN.xml",
+            "outputFile": "com.example.imageclassification.app-mergeDebugResources-20:/values-en-rIN/values-en-rIN.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-3\\ddc34b3fd9cdaf8c562e8fd91c488a31\\transformed\\core-1.3.1\\res\\values-en-rIN\\values-en-rIN.xml",
+                    "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-3\\bcb0a05eae7d5952f323ef277a6d99ab\\transformed\\core-1.6.0\\res\\values-en-rIN\\values-en-rIN.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
