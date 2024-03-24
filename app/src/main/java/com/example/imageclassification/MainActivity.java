@@ -27,6 +27,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.mlkit.vision.digitalink.Ink;
+
 
 public class MainActivity extends AppCompatActivity implements GetTouch {
 
@@ -80,7 +82,35 @@ public class MainActivity extends AppCompatActivity implements GetTouch {
     }
 
     // Call this each time there is a new event.
-    public void addNewTouchEvent(MotionEvent event) {
 
+    Ink.Builder inkBuilder = Ink.builder();
+    Ink.Stroke.Builder strokeBuilder;
+
+    // Call this each time there is a new event.
+    public void addNewTouchEvent(MotionEvent event) {
+        float x = event.getX();
+        float y = event.getY();
+        long t = System.currentTimeMillis();
+
+        // If your setup does not provide timing information, you can omit the
+        // third paramater (t) in the calls to Ink.Point.create
+        int action = event.getActionMasked();
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+                strokeBuilder = Ink.Stroke.builder();
+                strokeBuilder.addPoint(Ink.Point.create(x, y, t));
+                break;
+            case MotionEvent.ACTION_MOVE:
+                strokeBuilder.addPoint(Ink.Point.create(x, y, t));
+                break;
+            case MotionEvent.ACTION_UP:
+                strokeBuilder.addPoint(Ink.Point.create(x, y, t));
+                inkBuilder.addStroke(strokeBuilder.build());
+                strokeBuilder = null;
+                break;
+        }
     }
+
+    // This is what to send to the recognizer.
+    Ink ink = inkBuilder.build();
 }
